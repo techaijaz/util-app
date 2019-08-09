@@ -1,10 +1,10 @@
 $(document).ready(function(){
-    var base_url = 'http://localhost:3000/';
+    var base_url = '/';
     $("#saveTodo").click(()=>{
         if($("#inputTodo").val()!=""){
             $.ajax({
                 type: "POST",
-                url: "saveTodo",
+                url: "/saveTodo",
                 data:{
                     body : $("#inputTodo").val(),
                     isDone : false
@@ -23,7 +23,7 @@ $(document).ready(function(){
         $(".todochkbox:checked").each(function(){
             $.ajax({
                 type: "POST",
-                url: "updateTodo",
+                url: "/updateTodo",
                 data:{
                     index : $(this).val()
                 },

@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <title>Todo</title>
+  </head>
+  <body>
+    <% include ./partials/header %> 
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="todolist not-done">
+                 <h1>Todos</h1>
+                    <input id="inputTodo" type="text" class="form-control add-todo" placeholder="Add todo">
+                    <button id="saveTodo" class="btn btn-success">Mark all as done</button>
+                    <hr>
+                    <ul id="sortable" class="list-unstyled">
+                        <% if(data.length>0){ 
+                          data.forEach((item)=>{
+                            if(item.isDone=='false'){
+                        %>
+                        <li class="ui-state-default">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="<%= item.index %>" id="todoId_<%= item.index %>" class="todochkbox" />
+                                    <%= item.body %>
+                                </label>
+                            </div>
+                        </li>
+                        <% 
+                              }
+                            });
+                          } 
+                        %>
+                    </ul>
+                    <div class="todo-footer">
+                        <strong><span class="count-todos"></span></strong> Items Left
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="todolist">
+                 <h1>Already Done</h1>
+                    <ul id="done-items" class="list-unstyled">
+                        <% if(data.length>0){ 
+                          data.forEach((item)=>{
+                            if(item.isDone=='true'){
+                        %>
+                        <li><%= item.body %>  <button class="remove-item btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-remove"></span></button></li>
+                        <% 
+                          }
+                            });
+                          } 
+                        %>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% include ./partials/footer %> 
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <script src="/js/index.js"></script>
+  </body>
+</html>
